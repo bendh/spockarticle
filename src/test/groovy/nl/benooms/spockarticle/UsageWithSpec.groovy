@@ -3,9 +3,7 @@ package nl.benooms.spockarticle
 import nl.benooms.spockarticle.domain.Car
 import spock.lang.Specification
 
-/**
- * Created by booms on 29-12-16.
- */
+
 class UsageWithSpec extends Specification {
 
     def "Sample usage of with keyword"() {
@@ -21,9 +19,9 @@ class UsageWithSpec extends Specification {
                             .build()
         then:
             with(result) {
-                make == make
-                model == model
-                color == color
+                result.make == make
+                result.model == model
+                result.color == color
             }
     }
 

@@ -1,35 +1,41 @@
 package nl.benooms.spockarticle
 
+import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
-/**
- * Created by booms on 29-12-16.
- */
+
 class CalculatorServiceSpec extends Specification {
 
     def calculatorService = new CalculatorServiceImpl()
 
     def "Add should throw message when operands is null" () {
+        setup:
+            def operand = null
         when:
-            calculatorService.add(null)
+            calculatorService.add(operand)
         then:
             def error = thrown(NullPointerException.class)
-            assert error.message == "at least one operand should be supplied"
+            assert error.message == CalculatorServiceImpl.NO_OPERANDS_ERROR_MESSAGE
+        printf calculatorService.toString()
     }
 
     def "Add should throw message when no operands are provided" () {
+        given: "A operand containing a empty array"
+            def operand = new int[0]
         when:
-        calculatorService.add(new int[0])
+        calculatorService.add(operand)
         then:
         def error = thrown(NullPointerException.class)
         assert error.message == "at least one operand should be supplied"
+        printf calculatorService.toString()
     }
 
     @Unroll
     "When #operands are provided #result is expected" () {
         expect:
             assert calculatorService.add(operands) == result
+        printf calculatorService.toString()
         where:
         operands           || result
         [1,2] as int[]     || 3

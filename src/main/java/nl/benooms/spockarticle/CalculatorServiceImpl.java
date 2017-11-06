@@ -2,9 +2,7 @@ package nl.benooms.spockarticle;
 
 import java.util.Objects;
 
-/**
- * Created by booms on 29-12-16.
- */
+
 public class CalculatorServiceImpl  implements CalculatorService{
 
     public static final String NO_OPERANDS_ERROR_MESSAGE = "at least one operand should be supplied";
