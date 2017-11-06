@@ -1,6 +1,8 @@
 package nl.benooms.spockarticle;
 
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 
 public class CalculatorServiceImpl  implements CalculatorService{
@@ -9,11 +11,9 @@ public class CalculatorServiceImpl  implements CalculatorService{
 
     public int add(int... operands) {
         Objects.requireNonNull(operands, NO_OPERANDS_ERROR_MESSAGE);
-        int result = 0;
+        int result;
         if (operands.length > 0){
-            for (int i : operands){
-                result += i;
-            }
+            result = IntStream.of(operands).sum();
         } else {
             throw new NullPointerException(NO_OPERANDS_ERROR_MESSAGE);
         }
